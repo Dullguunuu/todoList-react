@@ -2,8 +2,8 @@ import './App.css';
 import { useState } from "react"
 
 function App() {
-  const [task, setTask] = useState("");     //input
-  const [tasks, setTasks] = useState([]);     //
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
   const [doneTotal, setDoneTotal] = useState(0);
 
   const addTask = () => {
@@ -15,7 +15,10 @@ function App() {
 
     const newArr = [...tasks]
     newArr.push(newObj);
+
     setTasks(newArr);
+
+
 
     setTask("");
   }
@@ -23,7 +26,6 @@ function App() {
     const objList = tasks.map((val) => {
       if (val.id === id) {
         val.isDone = !val.isDone;
-
       }
       return val;
     })
@@ -35,8 +37,22 @@ function App() {
     const arr = tasks.filter((e) => e.isDone === true)
     setDoneTotal(arr.length)
   }
+
+  function editTask(value) {
+
+  }
+
+  function deleteTask(id) {
+    const spliceHiih = [...tasks]
+    if (tasks.id == id) {
+      spliceHiih.splice(id, 1)
+    }
+    setTasks(spliceHiih)
+  }
+
+  console.log(tasks)
   return (
-    <div className='container'>
+    < div className='container' >
       <div className='row mt-4'>
         <div className='col-md-4'>
           <h1>To do List</h1>
@@ -54,14 +70,14 @@ function App() {
         <div className='col-md-4'>
           {
             tasks.map((e) => (
-              <div className='d-flex justify-content-between align-items-center'>
-                <div className='d-flex'>
+              <div className='d-flex justify-content-between align-items-center mb-2'>
+                <div className='d-flex gap-1'>
                   <input type="checkbox" checked={e.isDone} onChange={() => onDoneTask(e.id)} />
                   <h4>{e.title}</h4>
                 </div>
-                <div>
-                  <button className="btn btn-warning">Edit</button>
-                  <button className="btn btn-danger">Delete</button>
+                <div className='d-flex gap-3'>
+                  <button className="btn btn-warning" onClick={() => editTask(e.value)}>Edit</button>
+                  <button className="btn btn-danger" onClick={() => deleteTask(e.id)}>Delete</button>
                 </div>
               </div>
             ))
