@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from "react"
+import Modal from './components/Modal';
 
 function App() {
   const [task, setTask] = useState("");
@@ -83,6 +84,15 @@ function App() {
             ))
           }
         </div>
+        <Modal
+          modal={modal}
+          setModal={handleModal}
+          task={task}
+          id={ID}
+          setTask={setTask}
+          addTask={addTask}
+        // setTasks={setTasks}
+        />
       </div>
     </div >
   );
