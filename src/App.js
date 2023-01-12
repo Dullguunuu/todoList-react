@@ -3,25 +3,28 @@ import { useState } from "react"
 import Modal from './components/Modal';
 
 function App() {
-  const [task, setTask] = useState("");
+  const init = {
+    id: "",
+    task: "",
+    type: 0,
+    isImportant: false,
+    isDone: false,
+  };
+
   const [tasks, setTasks] = useState([]);
+  const [ID, setId] = useState("0");
+  const [modal, setModal] = useState(false);
   const [doneTotal, setDoneTotal] = useState(0);
+  const [taskObj, setTaskObj] = useState(init);
 
-  const addTask = () => {
-    const newObj = {
-      id: tasks.length,
-      title: task,
-      isDone: false,
-    };
-
+  const addTask = (e) => {
+    console.log(taskObj)
     const newArr = [...tasks]
-    newArr.push(newObj);
-
+    newArr.push({ ...taskObj, id: createId() });
     setTasks(newArr);
-
-
-
-    setTask("");
+    setTasks([...tasks, { ...taskObj, id: createId() }]);
+    setModal(false);
+    setTaskObj(init);
   }
   const onDoneTask = (id) => {
     const objList = tasks.map((val) => {
@@ -91,7 +94,7 @@ function App() {
           id={ID}
           setTask={setTask}
           addTask={addTask}
-        // setTasks={setTasks}
+          setTasks={setTasks}
         />
       </div>
     </div >

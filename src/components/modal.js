@@ -9,23 +9,36 @@ export default function Modal({ setModal, modal, id, task, setTask, addTask }) {
                     <h2>Засах</h2>
                 </div>
                 <div className="w-100">
-                    <input id="HAH"
-                        className="form-control"
-                        type="text"
-                        value={task}
-                        onChange={(e) => setTask(e.target.value)}
-                        placeholder="Таскаа оруулна уу"
-                    />
-                    <input type="hidden" value={id} />
-                    <button className="btn btn-primary" onClick={addTask}>
-                        +Add
-                    </button>
                     <hr />
-                </div>
-                <div className="btn btn-light" onClick={setModal}>
-                    Хаах
+                    <div className="form">
+                        <div className="mb-3">
+                            <label className="form-label" for="type">Хийгдэх ажил</label>
+
+                            <input
+                                id="task"
+                                name: "task"
+                            className="form-control"
+                            type="text"
+                            value={taskObj.task}
+                            onChange={(e) => setTaskObj({ ...taskObj, task: e.target.value })}
+                            placeholder="Таскаа оруулна уу"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <div className="form-check">
+                                <input type="hidden" value={ } />
+                                <button className="btn btn-primary" onClick={addTask}>
+                                    +Add
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+
+                    </div>
+                    <div className="btn btn-light" onClick={setModal}>
+                        Хаах
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+            )
 }
